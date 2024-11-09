@@ -50,7 +50,11 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  const sum = value1 + value2;
+  if (sum > Number.MAX_VALUE) {
+    return Infinity;
+  }
+  return sum / 2;
 }
 
 /**
@@ -430,7 +434,7 @@ function getNumberValue(number) {
  * '5'      => false
  */
 function isNumber(number) {
-  return typeof number === 'number' && number !== Infinity;
+  return typeof number === 'number' && number === Infinity;
 }
 
 /**
@@ -590,9 +594,11 @@ function getIntegerPartNumber(number) {
  * @example:
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
- */
+
+*/
 function getSumOfNumbers(x1, x2, x3) {
-  return x1 + x2 + x3;
+  const sum = x1 + x2 + x3;
+  return Math.round(sum * 10) / 10;
 }
 
 /**
