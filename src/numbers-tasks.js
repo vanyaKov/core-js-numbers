@@ -498,7 +498,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  const result = parseInt(str, base);
+  const result = Number.parseInt(str, base);
   return Number.isNaN(result) ? NaN : result;
 }
 
@@ -572,15 +572,7 @@ function roundToNearestInteger(number) {
  * -5.5 => -5
  */
 function getIntegerPartNumber(number) {
-  const pointIndex = String(number).indexOf('.');
-  let prom = '';
-  for (let i = 0; i < pointIndex; i += 1) {
-    if (String(number)[i] === '.') {
-      break;
-    }
-    prom += String(number)[i];
-  }
-  return Number(prom);
+  return Math.trunc(number);
 }
 
 /**
@@ -614,7 +606,7 @@ function getSumOfNumbers(x1, x2, x3) {
  * 0, 5   => 5
  */
 function getMaxNumber(firstNumber, secondNumber) {
-  return firstNumber > secondNumber ? firstNumber : secondNumber;
+  return Math.max(firstNumber, secondNumber);
 }
 
 /**
