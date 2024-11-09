@@ -51,8 +51,8 @@ function getCircleCircumference(radius) {
  */
 function getAverage(value1, value2) {
   const sum = value1 + value2;
-  if (sum > Number.MAX_VALUE) {
-    return Infinity;
+  if (!Number.isFinite(sum) || sum > Number.MAX_VALUE) {
+    return Number.MAX_VALUE;
   }
   return sum / 2;
 }
@@ -434,7 +434,7 @@ function getNumberValue(number) {
  * '5'      => false
  */
 function isNumber(number) {
-  return typeof number === 'number' && number === Infinity;
+  return Number.isFinite(number);
 }
 
 /**
@@ -463,24 +463,7 @@ function isInteger(number) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  const pointIndex = str.indexOf('.');
-  let res = '';
-  let prom = '';
-  for (let i = pointIndex - 1; i >= 0; i -= 1) {
-    if (!Number(str[i]) && str[i] !== '.') {
-      break;
-    }
-    if (str[i] !== '.') {
-      prom += str[i];
-    }
-  }
-  for (let i = pointIndex + 1; i < str.length; i += 1) {
-    if (!Number(str[i]) && str[i] !== '.') {
-      break;
-    }
-    res += str[i];
-  }
-  return prom.split('').reverse().join('') + res;
+  return Number.parseFloat(str);
 }
 
 /**
@@ -653,13 +636,11 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  let sum = 0;
-  for (let i = 0; i < number; i += 1) {
-    if (i % 2 !== 0) {
-      sum += 1;
-    }
+  let count = 0;
+  for (let i = 1; i <= number; i += 2) {
+    count += 1;
   }
-  return sum;
+  return count;
 }
 
 module.exports = {
