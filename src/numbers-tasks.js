@@ -430,7 +430,7 @@ function getNumberValue(number) {
  * '5'      => false
  */
 function isNumber(number) {
-  return (typeof number === 'number' && number !== Infinity && !Number.isNaN(number));
+  return typeof number === 'number' && number !== Infinity;
 }
 
 /**
